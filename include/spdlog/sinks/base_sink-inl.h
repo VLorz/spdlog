@@ -35,9 +35,9 @@ void SPDLOG_INLINE spdlog::sinks::base_sink<Mutex>::flush() {
 }
 
 template <typename Mutex>
-void SPDLOG_INLINE spdlog::sinks::base_sink<Mutex>::set_pattern(const std::string &pattern) {
+void SPDLOG_INLINE spdlog::sinks::base_sink<Mutex>::set_pattern(const std::string &pattern, pattern_time_type time_type) {
     std::lock_guard<Mutex> lock(mutex_);
-    set_pattern_(pattern);
+    set_pattern_(pattern, time_type);
 }
 
 template <typename Mutex>
@@ -48,8 +48,8 @@ spdlog::sinks::base_sink<Mutex>::set_formatter(std::unique_ptr<spdlog::formatter
 }
 
 template <typename Mutex>
-void SPDLOG_INLINE spdlog::sinks::base_sink<Mutex>::set_pattern_(const std::string &pattern) {
-    set_formatter_(details::make_unique<spdlog::pattern_formatter>(pattern));
+void SPDLOG_INLINE spdlog::sinks::base_sink<Mutex>::set_pattern_(const std::string &pattern, pattern_time_type time_type) {
+    set_formatter_(details::make_unique<spdlog::pattern_formatter>(pattern, time_type));
 }
 
 template <typename Mutex>
