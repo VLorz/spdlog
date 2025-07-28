@@ -40,11 +40,7 @@ public:
 
     void log(const details::log_msg &msg) override;
     void flush() override;
-<<<<<<< HEAD
-    void set_pattern(const std::string &pattern) override;
-=======
-    void set_pattern(const std::string &pattern, pattern_time_type time_type) final;
->>>>>>> c7bd3560 (Support for setting the pattern in sink-derived classes)
+    void set_pattern(const std::string &pattern, pattern_time_type time_type) override;
     void set_formatter(std::unique_ptr<spdlog::formatter> sink_formatter) override;
 
     // Formatting codes
